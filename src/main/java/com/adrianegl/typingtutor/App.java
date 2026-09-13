@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 
@@ -17,9 +17,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         Label label = new Label("Press a key");
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root, 1200, 720);
-        root.getChildren().add(label);
+        GridPane keyboardGrid = new GridPane();
+        keyboardGrid.setHgap(5);
+        keyboardGrid.setVgap(5);
+        Scene scene = new Scene(keyboardGrid, 1200, 720);
+        keyboardGrid.getChildren().add(label);
         scene.setOnKeyPressed(e -> {
            KeyCode keyCode = e.getCode();
            String keyText = e.getText();
