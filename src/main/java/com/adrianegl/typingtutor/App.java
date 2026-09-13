@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -15,8 +16,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        Label label = new Label("Press a key");
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1200, 720);
+        root.getChildren().add(label);
+        scene.setOnKeyPressed(e -> {
+           KeyCode keyCode = e.getCode();
+           String keyText = e.getText();
+           label.setText(keyText);
+        });
         stage.setScene(scene);
         stage.show();
     }
