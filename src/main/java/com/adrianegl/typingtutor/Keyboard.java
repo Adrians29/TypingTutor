@@ -4,10 +4,17 @@
  */
 package com.adrianegl.typingtutor;
 
+import javafx.geometry.Pos;
+import javafx.scene.layout.VBox;
+
 /**
  *
  * @author adria
  */
-public class Keyboard {
-    
+public class Keyboard extends VBox {
+    public Keyboard() {
+        this.setSpacing(10);
+        this.setAlignment(Pos.CENTER);
+        
+    }
 }
