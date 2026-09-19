@@ -24,7 +24,17 @@ public class SentenceDisplay {
             
             if (i < currentIdx) {
                 txtNode.setStyle("-fx-fill: green");
+            } else if (i == currentIdx) {
+                txtNode.setStyle(
+                    "-fx-fill: black; " +
+                    "-fx-underline: true; " +
+                    "-fx-font-weight: bold;"
+                );
+            } else{
+                txtNode.setStyle("-fx-fill: gray;");
             }
+            
+            txtFlow.getChildren().add(txtNode);
         }
     }
 }
