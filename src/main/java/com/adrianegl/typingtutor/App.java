@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+    private int currentIdx = 0;
     @Override
     public void start(Stage stage) {
         
@@ -33,15 +33,13 @@ public class App extends Application {
         
         Scene scene = new Scene(gridPane, 1200, 720);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-            int i = 0;
             char charKey = e.getText().charAt(0);
             String str = "Try typing this text. Do it as quickly and accurately as you can.";
-            if (charKey == str.toUpperCase().charAt(i)) {
-                keyboard.highLight(e.getCode());
-                i++;
-            } else if (charKey == str.toUpperCase().charAt(i)) {
-                keyboard.highLight(e.getCode());
-                i++;
+            if (charKey == str.charAt(currentIdx)) {
+                keyboard.highlightRight(e.getCode());
+                currentIdx++;
+            } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
+                keyboard.highlightWrong(e.getCode());
             }
 
         });
