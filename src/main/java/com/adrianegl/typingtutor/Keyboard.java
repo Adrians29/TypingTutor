@@ -5,7 +5,9 @@
 package com.adrianegl.typingtutor;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -22,5 +24,12 @@ public class Keyboard extends VBox {
             {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L},
             {KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M}
         };
+        
+        for (KeyCode[] row : layout) {
+            HBox hbox = new HBox(5);
+            hbox.setAlignment(Pos.CENTER);
+                  
+            
+        }
     }
 }
