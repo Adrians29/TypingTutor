@@ -27,20 +27,32 @@ public class Keyboard extends VBox {
         KeyCode[][] display = {
             {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O, KeyCode.P},
             {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L},
-            {KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M}
+            {KeyCode.SHIFT, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M}
         };
         
-        for (KeyCode[] row : display) {
+        for (int i = 0; i < display.length; i++) {
             HBox hbox = new HBox(7);
-            hbox.setAlignment(Pos.CENTER);
+            
+            if(i == display.length - 1) { 
+                hbox.setAlignment(Pos.CENTER_LEFT);
+            } else {
+                hbox.setAlignment(Pos.CENTER);
+            }
+            
                   
-            for (KeyCode code : row) {
+            for (KeyCode code : display[i]) {
                 Button button = createKey(code.getName(), code); 
                 hbox.getChildren().add(button);
             }
             this.getChildren().add(hbox);
         }
         
+        HBox hSpace = new HBox(7);
+        hSpace.setAlignment(Pos.CENTER);
+        Button bSpace = createKey("Space", KeyCode.SPACE);
+        bSpace.setPrefWidth(340);
+        hSpace.getChildren().add(bSpace);
+        this.getChildren().add(hSpace);
     }
     /**
      * @param label the keys name
@@ -49,6 +61,13 @@ public class Keyboard extends VBox {
      */
     private Button createKey(String label, KeyCode code) {
         Button b = new Button(label);
+        if (code.equals(KeyCode.SHIFT)) {
+            b.setPrefSize(100, 60);
+            b.setFocusTraversable(false);
+            keyButtonMap.put(code, b);
+            b.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
+            return b;
+        }
         b.setPrefSize(60, 60);
         b.setFocusTraversable(false);
         keyButtonMap.put(code, b);
