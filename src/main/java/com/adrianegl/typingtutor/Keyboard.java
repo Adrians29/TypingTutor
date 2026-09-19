@@ -29,7 +29,18 @@ public class Keyboard extends VBox {
             HBox hbox = new HBox(5);
             hbox.setAlignment(Pos.CENTER);
                   
-            
+            for (KeyCode code : row) {
+                Button button = createKeyButton(code.getName(), code); 
+            }
         }
-    }
+        
+        /**
+         * @param label the keys name
+         * @param code the key's code
+         * @return the keys button
+         */
+        private Button createKey(String label, KeyCode code) {
+         
+        }
+        
 }
