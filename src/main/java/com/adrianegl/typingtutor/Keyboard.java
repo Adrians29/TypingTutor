@@ -27,7 +27,7 @@ public class Keyboard extends VBox {
         KeyCode[][] display = {
             {KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O, KeyCode.P},
             {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L},
-            {KeyCode.SHIFT, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M}
+            {KeyCode.SHIFT, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.COMMA, KeyCode.PERIOD}
         };
         
         for (int i = 0; i < display.length; i++) {
@@ -41,8 +41,16 @@ public class Keyboard extends VBox {
             
                   
             for (KeyCode code : display[i]) {
-                Button button = createKey(code.getName(), code); 
-                hbox.getChildren().add(button);
+                if (code == KeyCode.COMMA) {
+                    Button button = createKey(",", code); 
+                    hbox.getChildren().add(button);
+                } else if (code == KeyCode.PERIOD) {
+                    Button button = createKey(".", code); 
+                    hbox.getChildren().add(button);
+                } else {
+                    Button button = createKey(code.getName(), code);
+                    hbox.getChildren().add(button);
+                }
             }
             this.getChildren().add(hbox);
         }
@@ -75,10 +83,17 @@ public class Keyboard extends VBox {
         return b;
     }
     
-    public void highLight(KeyCode code) {
+    public void highlightRight(KeyCode code) {
         Button b = keyButtonMap.get(code);
         if (b != null) {
             b.setStyle("-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
+        }
+    }
+    
+    public void highlightWrong(KeyCode code) {
+        Button b = keyButtonMap.get(code);
+        if (b != null) {
+            b.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
         }
     }
     
