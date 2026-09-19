@@ -36,7 +36,9 @@ public class Keyboard extends VBox {
                   
             for (KeyCode code : row) {
                 Button button = createKey(code.getName(), code); 
+                hbox.getChildren().add(button);
             }
+            this.getChildren().add(hbox);
         }
         
     }
