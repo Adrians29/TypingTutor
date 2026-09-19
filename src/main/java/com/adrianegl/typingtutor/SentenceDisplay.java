@@ -4,6 +4,8 @@
  */
 package com.adrianegl.typingtutor;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 /**
@@ -16,6 +18,13 @@ public class SentenceDisplay {
         
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
+            String displayChar = (c == ' ') ? " " : String.valueOf(c);
+            Text txtNode = new Text(displayChar);
+            txtNode.setFont(Font.font("Italic", 24));
+            
+            if (i < currentIdx) {
+                txtNode.setStyle("-fx-fill: green");
+            }
         }
     }
 }
