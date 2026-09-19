@@ -4,10 +4,18 @@
  */
 package com.adrianegl.typingtutor;
 
+import javafx.scene.text.TextFlow;
+
 /**
  *
  * @author adria
  */
 public class SentenceDisplay {
-    
+    public static void updateSentence(TextFlow txtFlow, String str, int currentIdx) {
+        txtFlow.getChildren().clear();
+        
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+        }
+    }
 }
