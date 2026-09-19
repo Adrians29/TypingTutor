@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -26,6 +26,12 @@ public class App extends Application {
         //keyboardGrid.setHgap(5);
         //keyboardGrid.setVgap(5);
         Scene scene = new Scene(gridPane, 1200, 720);
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            keyboard.highLight(e.getCode());
+        });
+        scene.addEventFilter(KeyEvent.KEY_RELEASED, e -> {
+            keyboard.unHighLight(e.getCode());
+        });
         /*keyboardGrid.getChildren().add(label);
         scene.setOnKeyPressed(e -> {
            KeyCode keyCode = e.getCode();
