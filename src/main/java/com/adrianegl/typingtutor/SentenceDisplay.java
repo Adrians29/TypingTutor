@@ -13,7 +13,7 @@ import javafx.scene.text.TextFlow;
  * @author adria
  */
 public class SentenceDisplay {
-    public static void updateSentence(TextFlow txtFlow, String str, int currentIdx, int mistake , int temp) {
+    public static void updateSentence(TextFlow txtFlow, String str, int currentIdx, int mistake) {
         txtFlow.getChildren().clear();
         
         for (int i = 0; i < str.length(); i++) {
@@ -25,13 +25,13 @@ public class SentenceDisplay {
             if (i < currentIdx) {
                 txtNode.setStyle("-fx-fill: green");
             } else if (i == currentIdx) {
-                if (mistake == temp) {
+                if (mistake == 0) {
                     txtNode.setStyle(
                         "-fx-fill: black; " +
                         "-fx-underline: true; " +
                         "-fx-font-weight: bold;"
                     );
-                } else if (temp < mistake) {
+                } else if (mistake > 0) {
                     txtNode.setStyle(
                         "-fx-fill: red; " +
                         "-fx-underline: true; " +
