@@ -35,12 +35,16 @@ public class App extends Application {
         gridPane.setAlignment(Pos.CENTER);
         Keyboard keyboard = new Keyboard();
         Button bRest = new Button();
+        bRest.setText("RESET");
         Button bNext = new Button();
+        bNext.setText("NEXT");
         
         bNext.setDisable(true);
         
         gridPane.add(keyboard, 0, 7);
         gridPane.add(strContainer, 0, 5);
+        gridPane.add(bRest, 0, 8);
+        gridPane.add(bNext, 1, 8);
         
         Scene scene = new Scene(gridPane, 1200, 720);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
