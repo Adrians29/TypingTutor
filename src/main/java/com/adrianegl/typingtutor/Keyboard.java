@@ -4,6 +4,8 @@
  */
 package com.adrianegl.typingtutor;
 
+import java.util.HashMap;
+import java.util.Map;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
@@ -15,6 +17,9 @@ import javafx.scene.layout.VBox;
  * @author adria
  */
 public class Keyboard extends VBox {
+    
+    private final Map<KeyCode, Button> keyButtonMap = new HashMap<>();
+    
     public Keyboard() {
         this.setSpacing(10);
         this.setAlignment(Pos.CENTER);
@@ -25,7 +30,7 @@ public class Keyboard extends VBox {
             {KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M}
         };
         
-        for (KeyCode[] row : layout) {
+        for (KeyCode[] row : display) {
             HBox hbox = new HBox(5);
             hbox.setAlignment(Pos.CENTER);
                   
@@ -42,7 +47,9 @@ public class Keyboard extends VBox {
      */
     private Button createKey(String label, KeyCode code) {
         Button b = new Button(label);
-            
+        b.setPrefSize(45, 45);
+        b.setFocusTraversable(false);
+        keyButtonMap.put(code, b);
         return b;
     }
 }
