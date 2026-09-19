@@ -5,6 +5,7 @@
 package com.adrianegl.typingtutor;
 
 import javafx.geometry.Pos;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 /**
@@ -16,5 +17,8 @@ public class Keyboard extends VBox {
         this.setSpacing(10);
         this.setAlignment(Pos.CENTER);
         
+        KeyCode[][] display = {
+        
+        };
     }
 }
