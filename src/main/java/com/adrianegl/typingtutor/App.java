@@ -23,7 +23,8 @@ import javafx.stage.Stage;
 public class App extends Application {
     private int currentIdx = 0;
     private int mistake = 0;
-    private String str = "Try typing this text. Do it as quickly and accurately as you can.";
+    private int i = 1;
+    private String str = nextPhrase(i);
     private TextFlow strContainer;
     @Override
     public void start(Stage stage) {
@@ -121,7 +122,8 @@ public class App extends Application {
         });
         
         bNext.setOnAction(e -> {
-            str = "Next type another line of input data.";//modificar y usar el metodo para cambiar de string.
+            ++i;
+            str = nextPhrase(i);
             strContainer.setStyle("-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;");
             mistake = 0;
             currentIdx = 0;
@@ -144,22 +146,23 @@ public class App extends Application {
         launch(args);
     }
     
-    /*public String nextPhrase(int num) {
-        String str = switch(num) {
-            case 1 -> "Try typing this text. Do it as quickly and accurately as you can.";
-            case 2 -> "Next type another line of input data.";
-            case 3 -> "The quick brown fox jumps over the lazy dog.";
-            case 4 -> "Five big quacking zephyrs jolt my wax bed.";
-            case 5 -> "Sympathizing would fix Quaker objectives.";
-            case 6 -> "A large fawn jumped quickly over white zinc boxes.";
-        };
-        
-        char c = ' ';
-        for (int i = 0; i < str.length(); i++) {
-            str.charAt(i);
+    public String nextPhrase(int num) {
+        switch (num) {
+            case 1:
+                return "Try typing this text. Do it as quickly and accurately as you can.";
+            case 2:
+                return "Next type another line of input data.";
+            case 3:
+                return "The quick brown fox jumps over the lazy dog.";
+            case 4:
+                return "Five big quacking zephyrs jolt my wax bed.";
+            case 5:
+                return "Sympathizing would fix Quaker objectives.";
+            case 6:
+                return "A large fawn jumped quickly over white zinc boxes.";
+            default:
+                return "Try typing this text. Do it as quickly and accurately as you can.";
         }
-        
-        return str;
-    }*/
-
+    }
+    
 }
