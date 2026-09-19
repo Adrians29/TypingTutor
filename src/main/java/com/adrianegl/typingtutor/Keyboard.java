@@ -31,7 +31,7 @@ public class Keyboard extends VBox {
         };
         
         for (KeyCode[] row : display) {
-            HBox hbox = new HBox(5);
+            HBox hbox = new HBox(7);
             hbox.setAlignment(Pos.CENTER);
                   
             for (KeyCode code : row) {
@@ -49,9 +49,24 @@ public class Keyboard extends VBox {
      */
     private Button createKey(String label, KeyCode code) {
         Button b = new Button(label);
-        b.setPrefSize(45, 45);
+        b.setPrefSize(60, 60);
         b.setFocusTraversable(false);
         keyButtonMap.put(code, b);
+        b.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
         return b;
+    }
+    
+    public void highLight(KeyCode code) {
+        Button b = keyButtonMap.get(code);
+        if (b != null) {
+            b.setStyle("-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
+        }
+    }
+    
+    public void unHighLight(KeyCode code) {
+        Button b = keyButtonMap.get(code);
+        if (b != null) {
+            b.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
+        }
     }
 }
