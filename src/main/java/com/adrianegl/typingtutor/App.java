@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 
@@ -18,9 +19,16 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
     private int currentIdx = 0;
+    private int temp = 0;
+    private int mistake = 0;
     private String str = "Try typing this text. Do it as quickly and accurately as you can.";
+    private TextFlow strContainer;
     @Override
     public void start(Stage stage) {
+        strContainer = new TextFlow();
+        strContainer.setStyle("-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;");
+        
+        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
         
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -29,6 +37,7 @@ public class App extends Application {
         
         gridPane.add(keyboard, 0, 7);
         gridPane.add(label, 0, 6);
+        gridPane.add(strContainer, 0, 5);
         //Label label = new Label("Press a key");
         //keyboardGrid.setHgap(5);
         //keyboardGrid.setVgap(5);
@@ -42,10 +51,13 @@ public class App extends Application {
                     char upperCharKey = e.getText().toUpperCase().charAt(0);
                     if (upperCharKey == str.charAt(currentIdx)) {
                         keyboard.highlightRight(e.getCode());
-                        
                         currentIdx++;
+                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
                     } else if (upperCharKey != str.toUpperCase().charAt(currentIdx)) {
                         keyboard.highlightWrong(e.getCode());
+                        ++mistake;
+                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                        temp++;
                     }
                 }
             } else if (e.isShiftDown() && str.toUpperCase().charAt(currentIdx) != str.charAt(currentIdx)){
@@ -56,8 +68,12 @@ public class App extends Application {
                 if (charKey == str.charAt(currentIdx)) {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
+                    ++mistake;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                    temp++;
                 }
             } else{
                 KeyCode code = e.getCode();
@@ -67,8 +83,12 @@ public class App extends Application {
                 if (charKey == str.charAt(currentIdx)) {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
+                    ++mistake;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                    temp++;
                 }
             }
 
