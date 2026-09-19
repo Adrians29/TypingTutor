@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -28,19 +29,18 @@ public class App extends Application {
         strContainer = new TextFlow();
         strContainer.setStyle("-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;");
         
-        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
         
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         Keyboard keyboard = new Keyboard();
-        Label label = new Label("Try typing this text. Do it as quickly and accurately as you can.");
+        Button bRest = new Button();
+        Button bNext = new Button();
+        
+        bNext.setDisable(true);
         
         gridPane.add(keyboard, 0, 7);
-        gridPane.add(label, 0, 6);
         gridPane.add(strContainer, 0, 5);
-        //Label label = new Label("Press a key");
-        //keyboardGrid.setHgap(5);
-        //keyboardGrid.setVgap(5);
         
         Scene scene = new Scene(gridPane, 1200, 720);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
@@ -52,12 +52,12 @@ public class App extends Application {
                     if (upperCharKey == str.charAt(currentIdx)) {
                         keyboard.highlightRight(e.getCode());
                         currentIdx++;
-                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
                     } else if (upperCharKey != str.toUpperCase().charAt(currentIdx)) {
                         keyboard.highlightWrong(e.getCode());
                         ++mistake;
-                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
-                        temp++;
+                        SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
+                        --mistake;
                     }
                 }
             } else if (e.isShiftDown() && str.toUpperCase().charAt(currentIdx) != str.charAt(currentIdx)){
@@ -68,12 +68,12 @@ public class App extends Application {
                 if (charKey == str.charAt(currentIdx)) {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
-                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
                     ++mistake;
-                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
-                    temp++;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
+                    --mistake;
                 }
             } else{
                 KeyCode code = e.getCode();
@@ -83,12 +83,12 @@ public class App extends Application {
                 if (charKey == str.charAt(currentIdx)) {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
-                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
                     ++mistake;
-                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake, temp);
-                    temp++;
+                    SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
+                    --mistake;
                 }
             }
 
