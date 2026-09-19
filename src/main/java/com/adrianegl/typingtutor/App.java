@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
     private int currentIdx = 0;
+    private String str = "Try typing this text. Do it as quickly and accurately as you can.";
     @Override
     public void start(Stage stage) {
         
@@ -33,13 +35,41 @@ public class App extends Application {
         
         Scene scene = new Scene(gridPane, 1200, 720);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-            char charKey = e.getText().charAt(0);
-            String str = "Try typing this text. Do it as quickly and accurately as you can.";
-            if (charKey == str.charAt(currentIdx)) {
+            if (e.isShiftDown() && str.toUpperCase().charAt(currentIdx) == str.charAt(currentIdx)) {
+                KeyCode code = e.getCode();
                 keyboard.highlightRight(e.getCode());
-                currentIdx++;
-            } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
+                if (code.isLetterKey()) {
+                    char upperCharKey = e.getText().toUpperCase().charAt(0);
+                    if (upperCharKey == str.charAt(currentIdx)) {
+                        keyboard.highlightRight(e.getCode());
+                        
+                        currentIdx++;
+                    } else if (upperCharKey != str.toUpperCase().charAt(currentIdx)) {
+                        keyboard.highlightWrong(e.getCode());
+                    }
+                }
+            } else if (e.isShiftDown() && str.toUpperCase().charAt(currentIdx) != str.charAt(currentIdx)){
+                KeyCode code = e.getCode();
                 keyboard.highlightWrong(e.getCode());
+                char charKey = e.getText().charAt(0);
+
+                if (charKey == str.charAt(currentIdx)) {
+                    keyboard.highlightRight(e.getCode());
+                    currentIdx++;
+                } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
+                    keyboard.highlightWrong(e.getCode());
+                }
+            } else{
+                KeyCode code = e.getCode();
+                keyboard.highlightWrong(e.getCode());
+                char charKey = e.getText().charAt(0);
+
+                if (charKey == str.charAt(currentIdx)) {
+                    keyboard.highlightRight(e.getCode());
+                    currentIdx++;
+                } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
+                    keyboard.highlightWrong(e.getCode());
+                }
             }
 
         });
