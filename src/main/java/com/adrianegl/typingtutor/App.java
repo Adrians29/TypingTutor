@@ -131,12 +131,6 @@ public class App extends Application {
             bNext.setDisable(true);
         });
         
-        /*keyboardGrid.getChildren().add(label);
-        scene.setOnKeyPressed(e -> {
-           KeyCode keyCode = e.getCode();
-           String keyText = e.getText();
-           label.setText(keyText);
-        });*/
         
         stage.setScene(scene);
         stage.show();
