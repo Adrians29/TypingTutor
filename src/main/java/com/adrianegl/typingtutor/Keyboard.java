@@ -73,27 +73,29 @@ public class Keyboard extends VBox {
             b.setPrefSize(100, 60);
             b.setFocusTraversable(false);
             keyButtonMap.put(code, b);
-            b.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
+            b.getStyleClass().add("shift-key");
             return b;
         }
         b.setPrefSize(60, 60);
         b.setFocusTraversable(false);
         keyButtonMap.put(code, b);
-        b.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
+        b.getStyleClass().add("keyboard-key");
         return b;
     }
     
     public void highlightRight(KeyCode code) {
         Button b = keyButtonMap.get(code);
         if (b != null) {
-            b.setStyle("-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
+            b.getStyleClass().remove("key-wrong");
+            b.getStyleClass().add("key-correct");
         }
     }
     
     public void highlightWrong(KeyCode code) {
         Button b = keyButtonMap.get(code);
         if (b != null) {
-            b.setStyle("-fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
+            b.getStyleClass().remove("key-correct");
+            b.getStyleClass().add("key-wrong");
         }
     }
     
