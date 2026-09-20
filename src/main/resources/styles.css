@@ -44,3 +44,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
 }
+
+.sentence-correct {
+    -fx-fill: green;
+}
+
+.sentence-current {
+    -fx-fill: black;
+    -fx-underline: true;
+    -fx-font-weight: bold;
+}
+
+.sentence-current-wrong {
+    -fx-fill: red;
+    -fx-underline: true;
+    -fx-font-weight: bold;
+}
+
+.sentence-upcoming {
+    -fx-fill: gray;
+}
