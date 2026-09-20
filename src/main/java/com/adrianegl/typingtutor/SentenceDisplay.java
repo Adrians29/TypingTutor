@@ -23,23 +23,15 @@ public class SentenceDisplay {
             txtNode.setFont(Font.font("Italic", 24));
             
             if (i < currentIdx) {
-                txtNode.setStyle("-fx-fill: green");
+                txtNode.getStyleClass().add("sentence-correct");
             } else if (i == currentIdx) {
                 if (mistake == 0) {
-                    txtNode.setStyle(
-                        "-fx-fill: black; " +
-                        "-fx-underline: true; " +
-                        "-fx-font-weight: bold;"
-                    );
+                    txtNode.getStyleClass().add("sentence-current");
                 } else if (mistake > 0) {
-                    txtNode.setStyle(
-                        "-fx-fill: red; " +
-                        "-fx-underline: true; " +
-                        "-fx-font-weight: bold;"
-                    );
+                    txtNode.getStyleClass().add("sententce-current-wrong");
                 }
             } else{
-                txtNode.setStyle("-fx-fill: gray;");
+                txtNode.getStyleClass().add("sentence-upcoming");
             }
             
             txtFlow.getChildren().add(txtNode);
