@@ -29,7 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         strContainer = new TextFlow();
-        strContainer.setStyle("-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;");
+        strContainer.getStyleClass().add("sentence-container");
         
         SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
         
@@ -40,10 +40,12 @@ public class App extends Application {
         bRest.setText("RESET");
         Button bNext = new Button();
         bNext.setText("NEXT");
+        Label lb = new Label("");
         
         bRest.setFocusTraversable(false);
         
         gridPane.add(keyboard, 0, 7);
+        gridPane.add(lb, 0, 6);
         gridPane.add(strContainer, 0, 5);
         gridPane.add(bRest, 0, 8);
         gridPane.add(bNext, 1, 8);
@@ -53,6 +55,8 @@ public class App extends Application {
         
         
         Scene scene = new Scene(gridPane, 1200, 720);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if (e.isShiftDown() && str.toUpperCase().charAt(currentIdx) == str.charAt(currentIdx)) {
                 KeyCode code = e.getCode();
@@ -124,7 +128,7 @@ public class App extends Application {
         bNext.setOnAction(e -> {
             ++i;
             str = nextPhrase(i);
-            strContainer.setStyle("-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8;");
+            strContainer.getStyleClass().add("sentence-container");
             mistake = 0;
             currentIdx = 0;
             SentenceDisplay.updateSentence(strContainer, str, currentIdx, mistake);
