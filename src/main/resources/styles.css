@@ -64,3 +64,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .sentence-upcoming {
     -fx-fill: gray;
 }
+
+.control-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 25px;
+    -fx-cursor: hand;
+}
+
+.reset-button {
+    -fx-background-color: #6B7280;
+}
+
+.reset-button:hover {
+    -fx-background-color: #4B5563;
+}
+
+.reset-button:pressed {
+    -fx-background-color: #374151;
+}
+
+.next-button {
+    -fx-background-color: #2563EB;
+}
+
+.next-button:hover {
+    -fx-background-color: blue;
+    -fx-opacity: 2;
+}
+
+.next-button:pressed {
+    -fx-background-color: darkblue;
+    -fx-opacity: 1;
+}
+
+.next-button:disabled {
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
