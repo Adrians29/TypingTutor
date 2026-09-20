@@ -12,7 +12,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .sentence-container {
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-padding: 15px;
     -fx-background-radius: 8px;
+}
+
+.keyboard-key {
+    -fx-background-color: gray;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    
+}
+
+.shift-key {
+    -fx-background-color: gray;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    
 }
