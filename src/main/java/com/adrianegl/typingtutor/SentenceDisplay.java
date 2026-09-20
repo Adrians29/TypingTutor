@@ -28,7 +28,7 @@ public class SentenceDisplay {
                 if (mistake == 0) {
                     txtNode.getStyleClass().add("sentence-current");
                 } else if (mistake > 0) {
-                    txtNode.getStyleClass().add("sententce-current-wrong");
+                    txtNode.getStyleClass().add("sentence-current-wrong");
                 }
             } else{
                 txtNode.getStyleClass().add("sentence-upcoming");
