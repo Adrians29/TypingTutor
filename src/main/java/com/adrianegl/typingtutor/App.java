@@ -42,6 +42,11 @@ public class App extends Application {
         bNext.setText("NEXT");
         Label lb = new Label("");
         
+        bRest.getStyleClass().add("control-button");
+        bRest.getStyleClass().add("reset-button");
+        bNext.getStyleClass().add("control-button");
+        bNext.getStyleClass().add("next-button");
+        
         bRest.setFocusTraversable(false);
         
         gridPane.add(keyboard, 0, 7);
