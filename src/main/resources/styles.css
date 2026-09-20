@@ -22,7 +22,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
-    
 }
 
 .shift-key {
@@ -30,5 +29,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
-    
+}
+
+.key-correct {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+}
+
+.key-wrong {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
 }
