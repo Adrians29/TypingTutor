@@ -7,3 +7,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : adria
 */
 
+.root {
+    -fx-background-color: black;
+}
+
+.sentence-container {
+    -fx-background-color: black;
+    -fx-padding: 15px;
+    -fx-background-radius: 8px;
+}
