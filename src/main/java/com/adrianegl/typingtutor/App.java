@@ -44,9 +44,13 @@ public class App extends Application {
         
         Label lbCount = new Label(wordCount(currentIdx, str.length()));
         Label lbMistake = new Label("" + mistake);
+        Label lb = new Label();
+
+        lbCount.setPrefSize(100, 40);
+        lbMistake.setPrefSize(200, 40);
         
-        lbMistake.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
-        lbCount.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
+        lbMistake.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-font-size: 18px;");
+        lbCount.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-font-size: 18px;");
         
         bRest.getStyleClass().add("control-button");
         bRest.getStyleClass().add("reset-button");
@@ -55,12 +59,13 @@ public class App extends Application {
         
         bRest.setFocusTraversable(false);
         
-        gridPane.add(keyboard, 0, 7);
-        gridPane.add(lbCount, 0, 4);
-        gridPane.add(lbMistake, 1, 4);
-        gridPane.add(strContainer, 0, 5);
+        gridPane.add(keyboard, 1, 7);
+        gridPane.add(lbCount, 1, 3);
+        gridPane.add(lbMistake, 2, 3);
+        gridPane.add(lb, 0, 4);
+        gridPane.add(strContainer, 1, 5);
         gridPane.add(bRest, 0, 8);
-        gridPane.add(bNext, 1, 8);
+        gridPane.add(bNext, 2, 8);
         
         
         bNext.setDisable(true);
@@ -143,6 +148,7 @@ public class App extends Application {
             if (e.getButton() == MouseButton.PRIMARY) {
                 currentIdx = 0;
                 currentMistake = 0;
+                mistake = 0;
                 lbCount.setText(wordCount(currentIdx, str.length()));
                 lbMistake.setText("" + mistake);
             }
@@ -154,6 +160,7 @@ public class App extends Application {
             strContainer.getStyleClass().add("sentence-container");
             currentMistake = 0;
             currentIdx = 0;
+            mistake = 0;
             SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
             lbCount.setText(wordCount(currentIdx, str.length()));
             lbMistake.setText("" + mistake);
