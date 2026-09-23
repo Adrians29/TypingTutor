@@ -42,8 +42,10 @@ public class App extends Application {
         Button bNext = new Button();
         bNext.setText("NEXT");
         
-        Label lbCount = new Label(wordCount(mistake, str.length()));
+        Label lbCount = new Label(wordCount(currentIdx, str.length()));
+        Label lbMistake = new Label("" + mistake);
         
+        lbMistake.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
         lbCount.setStyle("-fx-background-color: gray; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;");
         
         bRest.getStyleClass().add("control-button");
@@ -55,6 +57,7 @@ public class App extends Application {
         
         gridPane.add(keyboard, 0, 7);
         gridPane.add(lbCount, 0, 4);
+        gridPane.add(lbMistake, 1, 4);
         gridPane.add(strContainer, 0, 5);
         gridPane.add(bRest, 0, 8);
         gridPane.add(bNext, 1, 8);
@@ -79,6 +82,8 @@ public class App extends Application {
                     } else if (upperCharKey != str.toUpperCase().charAt(currentIdx)) {
                         keyboard.highlightWrong(e.getCode());
                         ++currentMistake;
+                        lbCount.setText(wordCount(currentIdx, str.length()));
+                        lbMistake.setText("" + mistake);
                         SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
                         --currentMistake;
                     }
@@ -92,9 +97,12 @@ public class App extends Application {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
                     SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
+                    lbCount.setText(wordCount(currentIdx, str.length()));
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
                     ++currentMistake;
+                    lbCount.setText(wordCount(currentIdx, str.length()));
+                    lbMistake.setText("" + mistake);
                     SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
                     --currentMistake;
                 }
@@ -107,12 +115,15 @@ public class App extends Application {
                     keyboard.highlightRight(e.getCode());
                     currentIdx++;
                     SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
+                    lbCount.setText(wordCount(currentIdx, str.length()));
                 } else if (charKey != str.toUpperCase().charAt(currentIdx)) {
                     keyboard.highlightWrong(e.getCode());
                     ++currentMistake;
                     ++mistake;
                     SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
                     --currentMistake;
+                    lbCount.setText(wordCount(currentIdx, str.length()));
+                    lbMistake.setText("" + mistake);
                 }
                 if (currentIdx == str.length()) {
                     bNext.setDisable(false);
@@ -132,6 +143,8 @@ public class App extends Application {
             if (e.getButton() == MouseButton.PRIMARY) {
                 currentIdx = 0;
                 currentMistake = 0;
+                lbCount.setText(wordCount(currentIdx, str.length()));
+                lbMistake.setText("" + mistake);
             }
         });
         
@@ -142,6 +155,8 @@ public class App extends Application {
             currentMistake = 0;
             currentIdx = 0;
             SentenceDisplay.updateSentence(strContainer, str, currentIdx, currentMistake);
+            lbCount.setText(wordCount(currentIdx, str.length()));
+            lbMistake.setText("" + mistake);
             bNext.setDisable(true);
         });
         
@@ -173,8 +188,8 @@ public class App extends Application {
         }
     }
     
-    public static String wordCount(int mistake, int length) {
-        return String.format("%d/%d", mistake, length);
+    public static String wordCount(int currentIdx, int length) {
+        return String.format("%d/%d", currentIdx, length);
     }
     
 }
